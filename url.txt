@@ -1,1 +1,1 @@
-Local URL: http://localhost:8501
+https://woxyeyrblqxcenyr42mj9c.streamlit.app/

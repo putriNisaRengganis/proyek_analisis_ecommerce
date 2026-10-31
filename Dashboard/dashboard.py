@@ -7,7 +7,7 @@ st.set_page_config(page_title="Dashboard E-Commerce Dicoding", layout="wide")
 
 sns.set_theme(style="whitegrid")
 
-st.title("📊 Dashboard Analisis E-Commerce (Proyek Akhir)")
+st.title(" Dashboard Analisis E-Commerce (Proyek Akhir)")
 st.markdown("---")
 
 
@@ -22,9 +22,6 @@ def load_data():
 
 df = load_data()
 
-# ==========================================
-# FITUR INTERAKTIF (Filter Rentang Tanggal)
-# ==========================================
 st.sidebar.header("Filter Interaktif")
 
 min_date = df["order_purchase_timestamp"].min().date()
@@ -42,21 +39,20 @@ if len(date_range) == 2:
 else:
   start_date = end_date = date_range[0]
 
-# Terapkan filter ke dataframe utama
 filtered_df = df[
     (df["order_purchase_timestamp"].dt.date >= start_date)
     & (df["order_purchase_timestamp"].dt.date <= end_date)
 ]
 
 st.sidebar.markdown("---")
-st.sidebar.header("Informasi Proyek")
+st.sidebar.header( "E-Commerce Public Dataset")
 st.sidebar.write("**Nama:** Putri Nisa Rengganis")
+st.sidebar.write("**Email:** putrinisarengganis@gmail.com")
+st.sidebar.write("**ID Dicoding:** putriiinrr")
 st.sidebar.write("**Dataset:** E-Commerce Public Dataset")
 
-# ==========================================
-# PERTANYAAN 1: Kategori Produk (Revenue Tertinggi & Terendah)
-# ==========================================
-st.header("🛒 Pertanyaan 1: Performa Pendapatan Kategori Produk")
+
+st.header(" Pertanyaan 1: Performa Pendapatan Kategori Produk")
 st.write(
     "Menganalisis kategori produk dengan total pendapatan (revenue) tertinggi"
     " dan terendah berdasarkan rentang waktu yang dipilih."
@@ -84,7 +80,7 @@ if (
         data=top_rev,
         color="#2b5c8f",
         ax=ax,
-    )  # Warna seragam profesional
+    )  
     ax.set_xlabel("Total Revenue (BRL)")
     ax.set_ylabel("")
     st.pyplot(fig)
@@ -99,7 +95,7 @@ if (
         data=bot_rev,
         color="#d9534f",
         ax=ax,
-    )  # Warna seragam senada untuk nilai terendah
+    )  
     ax.set_xlabel("Total Revenue (BRL)")
     ax.set_ylabel("")
     st.pyplot(fig)
@@ -110,10 +106,7 @@ else:
 
 st.markdown("---")
 
-# ==========================================
-# PERTANYAAN 2: Analisis RFM & Segmentasi Pelanggan
-# ==========================================
-st.header("👥 Pertanyaan 2: Analisis Segmen Pelanggan (RFM Analysis)")
+st.header(" Pertanyaan 2: Analisis Segmen Pelanggan (RFM Analysis)")
 st.write(
     "Mengidentifikasi performa pelanggan berdasarkan segmentasi RFM (Recency,"
     " Frequency, Monetary) dari data yang telah difilter."
@@ -141,7 +134,6 @@ if (
 
   rfm_df.columns = ["customer_unique_id", "recency", "frequency", "monetary"]
 
-  # Scoring RFM
   rfm_df["r_score"] = pd.qcut(
       rfm_df["recency"], 5, labels=[5, 4, 3, 2, 1], duplicates="drop"
   )
@@ -171,7 +163,6 @@ if (
 
   rfm_df["customer_segment"] = rfm_df.apply(segment_customer, axis=1)
 
-  # Visualisasi Konsisten dengan Notebook (2 Grafik Berdampingan: Jumlah Pelanggan & Revenue per Segmen)
   col_rfm1, col_rfm2 = st.columns(2)
 
   with col_rfm1:

@@ -13,7 +13,7 @@ Proyek ini bertujuan untuk menganalisis E-Commerce Public Dataset guna menjawab 
 1.**Membuat Virtual Environment :**
    ```bash
    conda create --name main-ds python=3.9
-   conda activate main-ds
+   conda activate main-dsgit 
    ```
 2. Pastikan Anda telah menginstal pustaka yang diperlukan dengan menjalankan:
     
